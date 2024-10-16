@@ -1,11 +1,12 @@
 // Server side
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <signal.h>
-# include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
 
+#include <sys/types.h>
+#include "libft/libft.h"
+#include "libft/ft_printf/ft_printf.h"
+#include <unistd.h>
+#include <signal.h>
+#include <stdio.h>
+#include <strings.h>
 
 char *placechar(char result, char *final)
 {
@@ -35,40 +36,33 @@ int recusive_multi(int nbr, int power)
     result = nbr *(recusive_multi(nbr,power - 1));
     return(result);
 }
-void signal_handler(int signum)
+void	signal_handler(int signum)
 {
-    int result;
-    int count;
-    char *final;
-    count = 0;
-    result = 0;
-    final = ft_strdup("");
+	static int	counter = 0;
+	static int	result = 0;
+	static int	len = 0;
+	static char	*final;
 
-    //final[0] = '\0';
-    if(signum == SIGUSR1)
-    {
-        result = result + 0;
-    }
-    else
-    {
-        result = result +(1 *recusive_multi(2 , 7 - count));
-    }
-    count++;
-    if(count == 8)
-    {
-        final = placechar(result, final);
-    }
-    if(result == '\0')
-        ft_printf("%s",final);
-
-    count = 0;
-    result = 0;
+	if (!final)
+		final = ft_strdup("");
+	if (signum == SIGUSR1)
+		result = result + 0;
+	else if (signum == SIGUSR2)
+		result = result + (1 * ft_recursive_multi(2, 7 - counter));
+	counter++;
+	if (counter == 8)
+	{
+		final = placechar(final, result);
+		if (result == '\0')
+		{
+			ft_printf("%s\n", final);
+			final = NULL;
+		}
+		counter = 0;
+		result = 0;
+		len += 1;
+	}
 }
-
-
-
-
-
 int main(void)
 {
 
@@ -80,3 +74,4 @@ int main(void)
     sleep(500);
 
 }
+
