@@ -1,82 +1,53 @@
-// Server side
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <signal.h>
-# include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xlourenc <xlourenc@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024-10-17 15:11:21 by xlourenc          #+#    #+#             */
+/*   Updated: 2024-10-17 15:11:21 by xlourenc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <signal.h>
+#include "/home/xlourenc/Desktop/42/Projects/minitalk/libft/libft.h"
+// #include "ft_printf/ft_printf.h"
 
-char *placechar(char result, char *final)
+void ft_handler(int signal)
 {
-    int i;
+static int	bit;
+static int	i;
 
-    i = 0;
-    final = malloc(sizeof(char) *ft_strlen(final)+2);
-    if(!final)
-        return(free(final),NULL);
-
-    while(final[i] != '\0')
-    i++;
-    if(final[i] == '\0')
-        final[i] = result;
-    final[++i] = '\0';
-    
-    return(final);
+	if (signal == SIGUSR1)
+		i |= (0x01 << bit);
+	bit++;
+	if (bit == 8)
+	{
+		printf("%c", i);
+		bit = 0;
+		i = 0;
+	}
 }
-int recusive_multi(int nbr, int power)
+int main(int argc, char **argv)
 {
-    int result;
-    
-    if(power == 0)
-        return (1);
-    if(power == -1)
-        return (0);
-    result = nbr *(recusive_multi(nbr,power - 1));
-    return(result);
-}
-void signal_handler(int signum)
-{
-    int result;
-    int count;
-    char *final;
-    count = 0;
-    result = 0;
-    final = ft_strdup("");
+	int pid;
 
-    //final[0] = '\0';
-    if(signum == SIGUSR1)
-    {
-        result = result + 0;
-    }
-    else
-    {
-        result = result +(1 *recusive_multi(2 , 7 - count));
-    }
-    count++;
-    if(count == 8)
-    {
-        final = placechar(result, final);
-    }
-    if(result == '\0')
-        ft_printf("%s",final);
+	(void)argv;
+	if (argc != 1)
+		return (0);
 
-    count = 0;
-    result = 0;
-}
-
-
-
-
-
-int main(void)
-{
-
-    ft_putstr_fd("  server pid :",1);
-    ft_printf("  server pid :%d\n",getpid());
-
-    signal(SIGUSR1,signal_handler);
-    signal(SIGUSR2,signal_handler);
-    sleep(500);
-
+	pid = getpid();
+	printf("pid is -->%d\n", pid);
+	printf("chat box |\n");
+	while (argc == 1)
+	{
+		signal(SIGUSR1, ft_handler);
+		signal(SIGUSR2, ft_handler);
+		pause();
+	}
+	return (0);
 }

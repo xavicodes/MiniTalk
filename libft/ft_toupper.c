@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlourenc <xlourenc@student.42.fr>          #+#  +:+       +#+        */
+/*   By: xlourenc <xlourenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-17 15:11:03 by xlourenc          #+#    #+#             */
-/*   Updated: 2024-10-17 15:11:03 by xlourenc         ###   ########.fr       */
+/*   Created: 2024/04/09 13:43:10 by xlourenc          #+#    #+#             */
+/*   Updated: 2024/04/22 14:22:37 by xlourenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <signal.h>
-# include "/home/xlourenc/Desktop/42/Projects/minitalk/libft/libft.h"
-#endif
+#include "libft.h"
+
+int	ft_toupper(int c)
+{
+	if (c >= 'a' && c <= 'z')
+	{
+		return (c - 32);
+	}
+	return (c);
+}
+/*
+int	main(void)
+{
+	int	test;
+
+		test = 'a';
+		printf("%c",toupper(test));
+}
+*/

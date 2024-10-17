@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlourenc <xlourenc@student.42.fr>          #+#  +:+       +#+        */
+/*   By: xlourenc <xlourenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-17 15:11:03 by xlourenc          #+#    #+#             */
-/*   Updated: 2024-10-17 15:11:03 by xlourenc         ###   ########.fr       */
+/*   Created: 2024/04/08 15:20:22 by xlourenc          #+#    #+#             */
+/*   Updated: 2024/04/15 14:20:46 by xlourenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <signal.h>
-# include "/home/xlourenc/Desktop/42/Projects/minitalk/libft/libft.h"
-#endif
+#include "libft.h"
+
+size_t	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
+}
+/*
+int	main(void)
+{
+	char	*test;
+
+		test = "hello";
+		printf("%lu",strlen("hello"));
+}
+*/
