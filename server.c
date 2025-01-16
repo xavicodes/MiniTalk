@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xlourenc <xlourenc@student.42.fr>          #+#  +:+       +#+        */
+/*   By: xaviermonteiro <xaviermonteiro@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-10-17 15:11:21 by xlourenc          #+#    #+#             */
-/*   Updated: 2024-10-17 15:11:21 by xlourenc         ###   ########.fr       */
+/*   Created: 2024/10/17 15:11:21 by xlourenc          #+#    #+#             */
+/*   Updated: 2025/01/16 16:59:36 by xaviermonte      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
-#include "/home/xlourenc/Desktop/42/Projects/minitalk/libft/libft.h"
-// #include "ft_printf/ft_printf.h"
+#include "minitalk.h"
 
 void ft_handler(int signal)
 {
